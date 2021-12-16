@@ -508,6 +508,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4bde752057ba474586aaf1743d59182, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pressStartText: {fileID: 83554015}
 --- !u!4 &873713244
 Transform:
   m_ObjectHideFlags: 0
