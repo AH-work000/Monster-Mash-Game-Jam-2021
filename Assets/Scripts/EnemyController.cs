@@ -1,15 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyController : MonoBehaviour
 {
+    // Member Variables for the Red Text of the Canvas
+    private GameObject gameOverGameObject;
+
+    private Text gameOverText;
+
     // Member Variables
     [SerializeField]
     private float duration;
-
-    /* [SerializeField]
-    private float lerpDirection; */
 
     private Transform goblinEnemyTransform;
 
@@ -19,6 +22,8 @@ public class EnemyController : MonoBehaviour
     private bool isGoblinGoingLeft;
 
     private bool isGoblinClimbingDown;
+
+    private bool hasTheChest;
 
 
 
@@ -34,6 +39,13 @@ public class EnemyController : MonoBehaviour
         isGoblinGoingLeft = false;
 
         isGoblinClimbingDown = false;
+
+        hasTheChest = false;
+
+        // Get the gameOverText
+        gameOverGameObject = GameObject.FindGameObjectWithTag("GameOver");
+
+        gameOverText = gameOverGameObject.GetComponent<Text>();
     }
 
 
@@ -56,6 +68,14 @@ public class EnemyController : MonoBehaviour
             DoLerp(-1.0f, 0.0f);
         }
 
+        // Check if the x position of the transform is equal
+        // or less than -27.8f 
+        if (hasTheChest)
+        {
+            // Destroy the Goblin (this gameObject)
+            DoLerp(0.0f, 0.0f);
+        }
+
     }
 
 
@@ -72,6 +92,7 @@ public class EnemyController : MonoBehaviour
         goblinEnemyTransform.position = Vector3.Lerp(goblinEnemyTransform.position, endPos, timeFraction);
 
     }
+
 
     // Message: OnCollisionEnter to detect when a collider/rigidbody touches this gameObject
     private void OnTriggerStay2D(Collider2D collision)
@@ -98,6 +119,12 @@ public class EnemyController : MonoBehaviour
             isGoblinClimbingDown = true;
             isGoblinGoingLeft = false;
             hasGoblinMeetWall = false;
+        }
+
+        if (collision.tag == "Chest")
+        {
+            hasTheChest = true;
+            gameOverText.text = "Game Over!";
         }
     }
 }

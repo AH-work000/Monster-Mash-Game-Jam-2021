@@ -7,6 +7,8 @@ TagManager:
   - Impassable
   - Go Left
   - Go Down
+  - Chest
+  - GameOver
   layers:
   - Default
   - TransparentFX
