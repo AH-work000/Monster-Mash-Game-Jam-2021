@@ -31,8 +31,8 @@ public class GeneratorController : MonoBehaviour
         // Check if floatInterval already have a value
         if (isFloatGeneratorOn)
         {
-            floatInterval = GenerateFloatNumber(1.0f, 8.0f);
-            Debug.Log("The float interval is " + floatInterval);
+            floatInterval = GenerateFloatNumber(7.0f, 10.0f);
+            // Debug.Log("The float interval is " + floatInterval);
             isFloatGeneratorOn = false;
         }
        
@@ -41,7 +41,7 @@ public class GeneratorController : MonoBehaviour
         if (timer >= floatInterval)
         {
             // Generate a Goblin Enemy
-            Instantiate(goblinPrefab, generationPosition, Quaternion.identity);
+            Instantiate(goblinPrefab, gameObject.transform.position, Quaternion.identity);
 
             // Reset the timer
             ResetTimer();
