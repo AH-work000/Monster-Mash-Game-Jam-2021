@@ -10,7 +10,13 @@ public class HeroController : MonoBehaviour
     private float lerpTime = 0.3f;
     private Animator anim;
     private GameObject hero;
-    private bool flag = true;
+    private bool flag = false;
+    private bool flag1 = false;
+    private bool flag2 = false;
+    private bool flag3 = false;
+    private bool flag4 = false;
+    private bool flag5 = false;
+    
     
     private Vector2 velocity;
     private Vector2 movement;
@@ -30,24 +36,79 @@ public class HeroController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Keyboard.current.aKey.wasPressedThisFrame || Keyboard.current.sKey.wasPressedThisFrame || 
-            Keyboard.current.wKey.wasPressedThisFrame || Keyboard.current.dKey.wasPressedThisFrame)
+        if (Keyboard.current.aKey.isPressed || Keyboard.current.sKey.isPressed || 
+            Keyboard.current.wKey.isPressed || Keyboard.current.dKey.isPressed || Keyboard.current.rightArrowKey.isPressed
+            || Keyboard.current.leftArrowKey.isPressed)
         {
-            anim.SetTrigger("hero_run");
-            flag = true;
+            if (!flag1)
+            {
+                anim.SetTrigger("hero_run");
+                flag = false;
+                flag1 = true;
+                flag2 = false;
+                flag3 = false;
+                flag4 = false;
+                flag5 = false;
+            }
         }
-        else if (Keyboard.current.spaceKey.wasPressedThisFrame)
+        else if (Keyboard.current.spaceKey.isPressed)
         {
-            anim.SetTrigger("hero_jump");
-            JumpUp();
-            flag = true;
+            if (!flag2)
+            {
+                anim.SetTrigger("hero_jump");
+                JumpUp();
+                flag = false;
+                flag1 = false;
+                flag2 = true;
+                flag3 = false;
+                flag4 = false;
+                flag5 = false;
+            }
+        }
+        else if (Keyboard.current.lKey.isPressed)
+        {
+            anim.SetTrigger("hero_slide");
+            flag = false;
+            flag1 = false;
+            flag2 = false;
+            flag3 = false;
+            flag4 = true;
+            flag5 = false;
+        }
+        else if (Keyboard.current.mKey.isPressed)
+        {
+            anim.SetTrigger("hero_death");
+            flag = false;
+            flag1 = false;
+            flag2 = false;
+            flag3 = false;
+            flag4 = false;
+            flag5 = true;
+        }
+        else if (Keyboard.current.kKey.isPressed)
+        {
+            if (!flag3)
+            {
+                anim.SetTrigger("hero_air_attack");
+                flag = false;
+                flag1 = false;
+                flag2 = false;
+                flag3 = true;
+                flag4 = false;
+                flag5 = false;
+            }
         }
         else
         {
-            if (flag)
+            if (!flag)
             {
                 anim.SetTrigger("hero_idle");
-                flag = false;
+                flag = true;
+                flag1 = false;
+                flag2 = false;
+                flag3 = false;
+                flag4 = false;
+                flag5 = false;
             }
         }
     }
