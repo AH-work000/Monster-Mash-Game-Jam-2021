@@ -44,10 +44,7 @@ public class MainMenuUIController : MonoBehaviour
         // When the 'X' key is pressed, load the game scene
         if (Input.GetKeyDown(KeyCode.X))
         {
-            Debug.Log("TEST COMMENT: Going to the Game Scene!");
-
-            //  UNCOMMENT THE BELOW CODE ONCE THE GAME SCENE IS FINALISED
-            // SceneManager.LoadSceneAsync(1);
+            SceneManager.LoadSceneAsync(1);
         }
 
 
@@ -87,7 +84,5 @@ public class MainMenuUIController : MonoBehaviour
     {
         timer = 0.0f;
     }
-
-
 
 }
