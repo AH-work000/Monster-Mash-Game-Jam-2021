@@ -34,15 +34,20 @@ public class EnemyController : MonoBehaviour
         // Designate the end position of the goblin enemy
         Vector3 endPos = new Vector3(goblinEnemyTransform.position.x - 1.0f, goblinEnemyTransform.position.y, goblinEnemyTransform.position.z);
 
-        Debug.Log("EndPos: " + endPos);
-
         // Calculate the timeFraction
         float timeFraction = Time.deltaTime / duration;
 
         // Perform Lerp using Vector3.lerp Unity function
         goblinEnemyTransform.position = Vector3.Lerp(goblinEnemyTransform.position, endPos, timeFraction);
 
-        Debug.Log("Final Position: " + goblinEnemyTransform.position);
     }
 
+    // Message: OnCollisionEnter to detect when a collider/rigidbody touches this gameObject
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Impassable")
+        {
+            Debug.Log("Going thru the wall!");
+        }
+    }
 }
