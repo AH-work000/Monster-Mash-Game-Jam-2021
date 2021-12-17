@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class HeroController : MonoBehaviour
 {
@@ -20,13 +21,13 @@ public class HeroController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || 
-            Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.D))
+        if (Keyboard.current.aKey.wasPressedThisFrame || Keyboard.current.sKey.wasPressedThisFrame || 
+            Keyboard.current.wKey.wasPressedThisFrame || Keyboard.current.dKey.wasPressedThisFrame)
         {
             anim.SetTrigger("hero_run");
 
         }
-        else if (Input.GetKeyDown(KeyCode.Space))
+        else if (Keyboard.current.spaceKey.wasPressedThisFrame)
         {
             anim.SetTrigger("hero_jump");
             JumpUp();
